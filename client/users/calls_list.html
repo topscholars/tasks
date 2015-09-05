@@ -1,0 +1,41 @@
+<template name="callsList">
+
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="date">Date</a>
+	          </th>	          
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="from">From</a>
+	          </th>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="to">To</a>
+	          </th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="status">Status</a></th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="duration">Duration</a></th>
+	          <th><a class="refresh calls" href="#"><span class="glyphicon glyphicon-refresh"></span></a></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#if Template.subscriptionsReady}}
+	      	{{#each calls}}
+	        	{{> callTitle }}
+			{{/each}}
+			{{else}}
+			  Loading...
+			{{/if}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+{{#if showLoadMore}}
+  <a class="load-more calls" href="#">Load More</a>
+{{/if}}
+</template>
+

@@ -1,0 +1,82 @@
+<template name="header">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav">
+        {{ #if signedIn }}
+          <li class="{{activeRouteClass 'home'}}">
+            <a href="{{pathFor 'home'}}"><img alt="Brand" src="/TSIcon48.ico" height="18" width="18">{{homeText}}</a>
+          </li>
+          <li class="{{activeRouteClass 'calendar'}}">
+            <a href="{{pathFor 'calendar'}}"><span class="glyphicon glyphicon-calendar"></span>{{calendarText}}</a>
+          </li>
+          <li class="{{activeRouteClass 'dashboard'}}">
+            <a href="{{pathFor 'dashboard'}}"><span class="glyphicon glyphicon-dashboard"></span>{{dashboardText}}</a>
+          </li>
+          {{#if staffView}}
+          <li class="dropdown {{activeRouteClass 'groupsList' 'groupEdit' 'groupDisplay' 'tasksList' 'taskEdit' 'taskDisplay' 'usersList' 'notesList' 'userEdit' 'userDisplay' 'rsvpsList' 'rsvpEdit' 'rsvpEditSlots' 'rsvpDisplay' 'resourcesList' 'resourceEdit' 'resourceDisplay'}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-briefcase"></span>{{briefcaseText}}</a>
+            <ul class="dropdown-menu">
+             <li><a href="{{pathFor 'tasksList'}}"><span class="glyphicon glyphicon-pencil"></span> Tasks</a></li>
+             <li><a href="{{pathFor 'usersList'}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+             <li><a href="{{pathFor 'notesList'}}"><span class="glyphicon glyphicon glyphicon-list-alt"></span> Notes</a></li>
+             <li><a href="{{pathFor 'groupsList'}}"><span class="glyphicon glyphicon-th-large"></span> Groups</a></li>
+            </ul>
+          </li>
+          <li class="dropdown {{activeRouteClass 'groupSearch' 'taskSearch' 'userSearch' 'noteSearch' 'rsvpSearch' 'resourceSearch' }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span>{{searchText}}</a>
+            <ul class="dropdown-menu">              
+             <li><a href="{{pathFor 'taskSearch'}}"><span class="glyphicon glyphicon-pencil"></span> Tasks</a></li>
+             <li><a href="{{pathFor 'userSearch'}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+             <li><a href="{{pathFor 'noteSearch'}}"><span class="glyphicon glyphicon glyphicon-list-alt"></span> Notes</a></li>
+             <li><a href="{{pathFor 'groupSearch'}}"><span class="glyphicon glyphicon-th-large"></span> Groups</a></li>
+            </ul>
+          </li>
+          <li class="dropdown {{activeRouteClass 'groupNew' 'groupNewBulk' 'taskNew' 'taskBulk' 'userNew' 'noteNew' 'userNewBulk' 'rsvpNew' 'resourceNew' 'resourceNewBulk' }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span>{{addText}}</a>
+            <ul class="dropdown-menu">              
+             <li><a href="{{pathFor 'taskNew'}}"><span class="glyphicon glyphicon-pencil"></span> Tasks</a></li>
+             <li><a href="{{pathFor 'userNew'}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+             <li><a href="{{pathFor 'noteNew'}}"><span class="glyphicon glyphicon-list-alt"></span> Notes</a></li>
+             <li><a href="{{pathFor 'groupNew'}}"><span class="glyphicon glyphicon-th-large"></span> Groups</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bookmark"></span>{{bookmarksText}}</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://webmail.topscholars.org/owa" target="_blank">Email <span class="glyphicon glyphicon-share"></span></a></li>
+              <li><a href="https://app.asana.com" target="_blank">Asana <span class="glyphicon glyphicon-share"></span></a></li>
+              <li><a href="https://drive.google.com/a/topscholars.org" target="_blank">Google Drive <span class="glyphicon glyphicon-share"></span></a></li>
+              <li><a href="http://topscholars.me/wp-admin" target="_blank">Website <span class="glyphicon glyphicon-share"></span></a></li>
+            </ul>
+          </li>
+          {{/if}}
+        {{/if}}        
+        {{#if mobileView}}
+        <li><b>{{> loginButtons }}</b></li>
+        {{else}}
+        {{/if}}        
+        </ul>
+       {{{testingText}}}
+
+<!--         <ul class="nav navbar-nav navbar-right">  
+          <li><b>{{> loginButtons align="right"}}</b></li>
+        </ul> -->
+        {{#if mobileView}}
+        {{else}}
+        <ul class="nav navbar-nav navbar-right">
+          <li><b>{{> loginButtons align="right"}}</b></li>
+        </ul>
+        {{/if}}
+      </div>
+    </div>
+  </nav>
+</template>

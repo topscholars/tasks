@@ -1,0 +1,70 @@
+<template name="userTitle">
+<tr>
+  <td><a href="{{pathFor 'userDisplay'}}"><span class="glyphicon glyphicon-user"></span> {{username}}</a></td>
+  <td>{{type}}</td>
+  {{#if taskExists}}
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">{{{getUserTaskButtons userTaskStatus ../../../_id}}}</button>
+      {{#if staffView}}
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation" id="incomplete" data-toggle='popover' title="incomplete"><a class="incomplete" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-unchecked"></span></a></li>
+        <li role="presentation" id="completed" data-toggle='popover' title="completed"><a class="completed" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-check"></span></a></li>
+        <li role="presentation" id="teamCompleted" data-toggle='popover' title="team completed"><a class="teamCompleted" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
+        <li role="presentation" id="late" data-toggle='popover' title="late"><a class="late" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-time"></span></a></li>
+        <li role="presentation" id="excused" data-toggle='popover' title="excused"><a class="excused" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-edit"></span></a></li>
+        <li role="presentation" id="madeup" data-toggle='popover' title="madeup"><a class="madeup" role="menuitem" tabindex="-1" href="#" data-userid="{{this._id}}" data-taskid="{{../..}}"><span class="glyphicon glyphicon-retweet"></span></a></li>
+      </ul>
+      {{/if}}
+    </div>
+  </td>
+  {{else}}
+  <td>
+    {{#if isStaffType type}}
+    {{else}}
+      <a href="#" data-toggle="modal" data-target="#noteNewModal{{_id}}" class="discuss btn"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-list-alt"></span></a>
+    {{/if}}
+  </td>
+  {{/if}}
+</tr>
+
+<!-- Modals -->
+<div class="modal fade" id="noteNewModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add note on {{username}}</h4>
+      </div>
+      <div class="modal-body">
+      <div class="input-group">
+        <span class="input-group-addon" for="note"><span class="glyphicon glyphicon-list-alt"></span> Note</span>
+        <textarea id="userNote{{_id}}" name="note" class="form-control" rows="10" type="text"></textarea>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" id="saveUserNote" data-userid="{{_id}}" class="btn btn-primary">Save and close</button>
+        <button type="button" class="btn btn-primary" id="saveUserNoteAddTask" data-userid="{{_id}}">Save and assign task <span class="glyphicon glyphicon-arrow-right"></span> <span class="glyphicon glyphicon-pencil"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="taskNewModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add new task</h4>
+      </div>
+      <div class="modal-body">
+        {{> taskNew}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

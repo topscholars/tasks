@@ -1,0 +1,7 @@
+<template name="dueDurationSelector">
+    {{#if selectedDueDuration this.value }}
+    	<option selected="selected" value="{{this.value}}">{{this.label}}</option>
+    {{else}}
+    	<option value="{{this.value}}">{{this.label}}</option>
+    {{/if}}
+</template>

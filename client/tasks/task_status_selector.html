@@ -1,0 +1,7 @@
+<template name="taskStatusSelector">
+    {{#if selectedStatus this }}
+    	<option selected="selected" value="{{this}}">{{this}}</option>
+    {{else}}
+    	<option value="{{this}}">{{this}}</option>
+    {{/if}}
+</template>

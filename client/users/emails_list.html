@@ -1,0 +1,40 @@
+<template name="emailsList">
+
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="date">Date</a>
+	          </th>        
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="from">From</a>
+	          </th>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="to">To</a>
+	          </th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="subject">Subject</a></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#if Template.subscriptionsReady}}
+	      	{{#each gmails}}
+	        	{{> emailTitle}}
+			{{/each}}
+			{{else}}
+			  Loading...
+			{{/if}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more emails" href="#">Load More</a>
+{{/if}}
+</template>
+

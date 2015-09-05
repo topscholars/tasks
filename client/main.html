@@ -1,0 +1,18 @@
+<template name="mainLayout">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
+  <title>TS alpha | Task Scheduler</title>
+</head>
+<body>
+  <div class="container">
+    {{> header}}
+    {{> errors}}
+    <div id="main" class="row-fluid">
+      {{> yield}}
+      <div id="main-spinner" class="loading-spinner"></div>
+    </div>
+  </div>
+</body>
+</template>
+

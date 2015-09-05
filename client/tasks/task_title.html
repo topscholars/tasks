@@ -1,0 +1,91 @@
+<template name="taskTitle">
+<tr>
+  <td>{{#if visible}}{{else}}<span class="glyphicon glyphicon-eye-close"></span>{{/if}} <a href="{{pathFor 'taskDisplay'}}"><span class="glyphicon glyphicon-pencil"></span> {{taskName}}</a>
+</td>
+  <td>{{type}}</td>
+  <td>{{localTime endTime}}</td>
+  {{#if userExists}}
+  <td>  
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">{{{getUserTaskButtons ../../../userTaskStatus this._id}}}</button>
+      {{#if staffView}}
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation" id="incomplete" data-toggle='popover' title="incomplete"><a class="incomplete" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-unchecked"></span></a></li>
+        <li role="presentation" id="completed" data-toggle='popover' title="completed"><a class="completed" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-check"></span></a></li>
+        <li role="presentation" id="teamCompleted" data-toggle='popover' title="team completed"><a class="teamCompleted" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-thumbs-up"></span></a></li>
+        <li role="presentation" id="late" data-toggle='popover' title="late"><a class="late" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-time"></span></a></li>
+        <li role="presentation" id="excused" data-toggle='popover' title="excused"><a class="excused" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-edit"></span></a></li>
+        <li role="presentation" id="madeup" data-toggle='popover' title="madeup"><a class="madeup" role="menuitem" tabindex="-1" href="#" data-taskid="{{this._id}}" data-userid="{{../..}}"><span class="glyphicon glyphicon-retweet"></span></a></li>
+      </ul>
+      {{/if}}
+    </div>
+  </td>
+  {{/if}}
+{{#if staffView}}
+  <td>
+    <a href="#" id="copyTask" data-taskid={{_id}} title='Copy'><span class="glyphicon glyphicon-share"></span></a>
+    <a href="#" id="deleteTask" data-taskid={{_id}} title='Delete'><span class="glyphicon glyphicon-trash"></span></a>
+  </td>
+{{else}}
+  <td>
+    {{#if showMeetingMaker}}
+    <a href="#" class="btn btn-defaut btn-sm" data-toggle="modal" data-target="#meetingModal{{_id}}" title='Schedule'><span class="glyphicon glyphicon-edit"></span> Schedule</a>
+    {{/if}}
+  </td>
+{{/if}}
+</tr>
+
+{{#if showMeetingMaker}}
+<!-- Modals -->
+<div class="modal fade meetingMaker" id="meetingModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><span class="glyphicon glyphicon-calendar"></span>{{taskName}}</h2>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="row">
+                {{> errors}}
+                <div class="col-md-8">
+                  {{#each meetingDays}}
+                    <a class="btn btn-sm btn-default meetingDay" data-date={{this}}>{{this}}</a>
+                  {{/each}}
+                </div>
+                <div class="col-md-4">
+                  {{#if existingMeetings}}
+                  <h5>Existing appointment:</h5>
+                  {{#each meetings}}
+                    {{> meetingTitle}}
+                  {{/each}}
+                  <h5>Select different time:</h5>
+                  {{else}}
+                  <h5>Select time:</h5>
+                  {{/if}}
+                  {{#each slots}}
+                    {{> slotTitle}}
+                  {{/each}}
+                  {{#if slots}}
+                    {{#if stagger}}
+                      <a href="#" id="unstagger" data-taskid={{_id}} class="btn btn-default btn-xs" title="Don't stagger slots"> +0 mins</a>
+                    {{else}}
+                      <a href="#" id="stagger" data-taskid={{_id}} class="btn btn-default btn-xs" title="Stagger slots by 30 mins"> +30 mins</a>
+                    {{/if}}
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default btn-xs" data-dismiss="modal" title="Close"> Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+</template>

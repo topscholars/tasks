@@ -1,0 +1,5 @@
+<template name="slotTitle">	
+	{{#if showSlot}}
+	<a href="#" class="btn btn-default btn-xs" id="makeAppointment" data-taskid="{{../_id}}" data-start="{{start}}" data-end="{{end}}" title="Make appointment">{{startTime}} - {{endTime}}</a><br/>
+	{{/if}}
+</template>

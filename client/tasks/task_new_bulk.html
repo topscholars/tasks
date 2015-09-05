@@ -1,0 +1,28 @@
+<template name="taskNewBulk">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'tasksList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Tasks List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSchedule'}}"><span class="glyphicon glyphicon-send"></span><b> Outbound</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+
+  <form class="main">
+
+    <p>[All dates and times go by your current browser's time zone]</p>
+    
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Save All" class="btn btn-primary"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <div id="handsOnTable"></div>
+        </div>
+    </div>
+
+  </form>
+</template>

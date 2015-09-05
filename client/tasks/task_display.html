@@ -1,0 +1,111 @@
+<template name="taskDisplay">
+{{#with task}}
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">
+	  	<h2>{{#if visible}}{{else}}<span class="glyphicon glyphicon-eye-close"></span>{{/if}} <span class="glyphicon glyphicon-pencil"></span> {{taskName}}
+	  	<a href="{{pathFor 'taskDisplay'}}" class="discuss btn" title='Last modified'>{{lastSaved}}</a>
+	  	<a href="{{pathFor 'taskDisplay'}}/report.csv" target="_blank" class="discuss btn" title='Report'><span class="glyphicon glyphicon-download-alt"></span></a>
+	  	<a href="#" id="copyTask" class="discuss btn" title='Copy'><span class="glyphicon glyphicon-share"></span></a>
+	  	<a href="{{pathFor 'taskEdit'}}" class="discuss btn" title='Edit'><span class="glyphicon glyphicon-edit"></span></a>
+	    <a class="discuss btn" data-toggle="collapse" href="#collapsePanel" aria-expanded="false" aria-controls="collapsePanel">toggle details</a>
+	    </h2>
+	  </div>
+
+	  <div id="collapsePanel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapsePanel">
+	  <div class="panel-body">
+		<p><b>Type:</b> {{status}} {{type}}</p>
+		<p>[All dates and times go by your current browser's time zone]</p>
+		<p><b>{{timeHelper "start" type}}:</b> {{localTime startTime}}</p>
+		<p><b>{{timeHelper "end" type}}:</b> {{localTime endTime}}</p>
+
+		{{#if taskMaster}}
+			{{#with taskMaster}}
+			<p><b>Master:</b> <a href="{{pathFor 'userDisplay'}}" class="discuss"><span class="glyphicon glyphicon-user"></span> {{username}}</a></p>
+			{{/with}}
+		{{/if}}
+
+		{{#if emailCampaign}}
+			<p><b>MailChimp Campaign ID:</b> {{emailCampaign}}</p>
+		{{/if}}
+
+		{{#if emailList}}
+			<p><b>MailChimp List ID:</b> {{emailList}}</p>
+		{{/if}}
+
+	 	{{#if location}}
+	 	  <p><b>Location:</b> {{location}}</p>
+		{{/if}}
+
+	 	{{#if description}}
+	 	  <p><b>Description:</b> {{description}}</p>
+		{{/if}}
+
+		{{#if emailBody}}
+			<p><b>Email body:</b> <br/><i>{{emailBody}}</i></p>
+		{{/if}}
+
+		{{#if emailTime}}
+			<p><b>Email time:</b> {{localTime emailTime}}</p>
+		{{/if}}
+		
+		{{#if sms}}
+			<p><b>SMS:</b> <i>{{sms}}</i></p>
+		{{/if}}
+		
+		{{#if smsTime}}
+			<p><b>SMS time:</b> {{localTime smsTime}}</p>	
+		{{/if}}
+	  </div>
+	  </div>
+
+	  {{#if staffView}}
+	  <!-- Table -->
+	  <div class="table-responsive"> 
+
+		<ul class="nav nav-tabs">
+		  {{#if viewGroups}}
+		  	<li role="presentation" class="active viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-open"></span> Groups</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-close"></span> Groups</a></li>
+		  {{/if}}	
+
+		  {{#if viewUsers}}
+		  	<li role="presentation" class="active viewUsers"><a href="#"><span id="usersFolder" class="glyphicon glyphicon-folder-open"></span> Users</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewUsers"><a href="#"><span id="usersFolder" class="glyphicon glyphicon-folder-close"></span> Users</a></li>
+		  {{/if}}
+
+<!-- 		  {{#if addGroup}}
+		  	<li role="presentation" class="active addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{/if}}
+
+		  {{#if addUser}}
+		  	<li role="presentation" class="active addUser"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addUser"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+		  {{/if}}	 -->	  
+		</ul>
+
+	    {{#if addUser}}
+	    	{{> userNew}}
+	    {{/if}}
+	    {{#if addGroup}}
+	    	{{> groupNew}}
+	    {{/if}}
+
+		{{#with viewGroups}}
+	    	{{> groupsList filter="tasks" groups=../groups}}
+		{{/with}}
+
+	    {{#with viewUsers}}
+	    	{{> usersList filter="tasks" users=../users}}
+	    {{/with}}
+
+	  </div>
+	  {{/if}}
+	</div>
+{{/with}}
+</template>

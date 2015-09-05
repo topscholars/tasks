@@ -1,0 +1,39 @@
+<template name="groupsList">
+	{{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-list-alt"></span><b> Groups List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupsList'}}/report.csv" target="_blank" class="discuss btn"><span class="glyphicon glyphicon-download-alt"></span> Report</a></li>
+    </ul>
+    {{/if}}
+	<div class="panel panel-default">
+  	<!-- Default panel contents -->
+
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="groupName">Group <span class="glyphicon glyphicon-{{sortGroupsStatus 'groupName'}}"></span></a></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#if Template.subscriptionsReady}}
+	      	{{#each groups}}
+	        	{{> groupTitle}}
+			{{/each}}
+			{{else}}
+			  Loading...
+			{{/if}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more groups" href="#">Load More</a>
+{{/if}}
+</template>
+

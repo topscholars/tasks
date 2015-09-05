@@ -1,0 +1,50 @@
+<template name="notesList">
+  {{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-list-alt"></span><b> Notes List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'noteSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'noteNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-list-alt"></span></a></li>
+    </ul>
+  {{/if}}
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="timeStamp">Created <span class="glyphicon glyphicon-{{sortNotesStatus 'submitted'}}"></span></a>
+	          </th>	          
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="authorName">Author <span class="glyphicon glyphicon-{{sortNotesStatus 'author'}}"></span></a>
+	          </th>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="username">User <span class="glyphicon glyphicon-{{sortNotesStatus 'username'}}"></span></a>
+	          </th>
+	          <th>
+	          	Text
+	          </th>
+	          <th>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#if Template.subscriptionsReady}}
+	      	{{#each notes}}
+	        	{{> noteTitle }}
+			{{/each}}
+			{{else}}
+			  Loading...
+			{{/if}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more notes" href="#">Load More</a>
+{{/if}}
+</template>
+

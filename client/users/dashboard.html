@@ -1,0 +1,56 @@
+<template name="dashboard">
+{{#with user}}
+	<div class="panel panel-default">
+
+	  <!-- Table -->
+	  <div class="table-responsive">
+
+		<ul class="nav nav-tabs">
+		  {{#if viewTasks}}
+		  	<li role="presentation" class="active viewTasks"><a href="#"><span id="tasksFolder" class="glyphicon glyphicon-folder-open"></span> Tasks</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewTasks"><a href="#"><span id="tasksFolder" class="glyphicon glyphicon-folder-close"></span> Tasks</a></li>
+		  {{/if}}
+<!-- 		  
+		  {{#if viewGroups}}
+		  	<li role="presentation" class="active viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-open"></span> Groups</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-close"></span> Groups</a></li>
+		  {{/if}}
+		  {{#if addTask}}
+		  	<li role="presentation" class="active addTask"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-calendar"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addTask"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-calendar"></span></a></li>
+		  {{/if}}
+		  
+		  {{#if addGroup}}
+		  	<li role="presentation" class="active addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{/if}} -->
+		</ul>
+
+	    {{#if addGroup}}
+	    	{{> groupNew}}
+	    {{/if}}
+	    {{#if addTask}}
+	    	{{> taskNew}}
+	    {{/if}}
+
+		{{#if viewRSVPs}}
+			{{> rsvpsList}}
+		{{/if}}
+
+	    {{#if viewGroups}}
+	    	{{> groupsList}}
+	    {{/if}}
+
+	    {{#if viewTasks}}
+	    	{{> tasksList}}
+	    {{/if}}
+
+	  </div>
+
+	</div>	
+{{/with}}
+</template>

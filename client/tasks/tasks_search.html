@@ -1,0 +1,43 @@
+<template name="taskSearch">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'tasksList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Tasks List</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSchedule'}}"><span class="glyphicon glyphicon-send"></span><b> Outbound</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+  	  <div class="panel-heading"><h4>Search by name, type, location, description, SMS text, email body, status</h4></div>
+	  <div class="panel-body">
+		{{> esInput index="tasks" placeholder="Enter search terms here" }} 
+	    {{#ifEsIsSearching index="tasks"}}
+	        <div>Searching...</div>
+	    {{/ifEsIsSearching}}
+	  </div>
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>Task</th>
+	          <th>Type</th>
+	          <th>End/Due</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#esEach index="tasks"}}
+	        	{{> taskTitle}}
+			{{/esEach}}
+	        {{#ifEsHasNoResults index="tasks"}}
+	            <div class="no-results">No results found</div>
+	        {{else}}
+	            {{> esLoadMoreButton index="tasks"}}
+	        {{/ifEsHasNoResults}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+</template>
+

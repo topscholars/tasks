@@ -1,0 +1,51 @@
+<template name="groupEdit">
+{{#with group}}
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+    <h2><a href="{{pathFor 'groupDisplay'}}"><span class="glyphicon glyphicon-th-large"></span>  {{groupName}}</a>
+      <a href="{{pathFor 'groupDisplay'}}/report.csv" class="discuss btn"><span class="glyphicon glyphicon-download-alt"></span> Report</a>
+      <a href="{{pathFor 'groupEdit'}}" class="discuss btn"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+    </h2>
+    </div>
+  <form class="main form">
+    <div class="input-group">
+        <span class="input-group-addon" for="groupName">Name</span>
+        <input name="groupName" class="form-control" type="text" value="{{groupName}}" placeholder="Enter name"/>
+    </div>
+
+    <div class="input-group tt-group">
+        <span class="input-group-addon" for="subgroups"><span class="glyphicon glyphicon-th-large"></span> Subgroups</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-subgroups" name="subgroups" value="" placeholder="Enter group names here"/>
+    </div> 
+
+    <div class="input-group tt-user">
+        <span class="input-group-addon" for="users"><span class="glyphicon glyphicon-user"></span> Users</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-users" name="users" value="" placeholder="Enter user names here"/>
+    </div> 
+
+    <div class="input-group tt-task">
+        <span class="input-group-addon" for="tasks"><span class="glyphicon glyphicon-pencil"></span> Tasks</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-tasks" name="tasks" value="" placeholder="Enter task names here"/>
+    </div> 
+
+    <div class="input-group">
+      <span class="input-group-addon" for="description"><span class="glyphicon glyphicon-list-alt"></span> Description</span>
+      <textarea name="description" class="form-control" type="text">{{description}}</textarea>
+    </div>
+
+      <div class="control-group">
+          <div class="controls">
+              <input type="submit" value="Save" class="btn btn-primary submit"/>
+          </div>
+      </div>
+      <hr/>
+      <div class="control-group">
+          <div class="controls">
+              <a class="btn btn-danger delete" href="#"><span class="glyphicon glyphicon-trash"></span> Delete group</a>
+          </div>
+      </div>
+    </form>
+    </div>
+{{/with}}
+</template>

@@ -1,0 +1,9 @@
+<template name="scheduleTitle">
+<tr data-toggle="popover" title="{{taskName}}" data-content="{{contentText}}">
+	<td>{{type}}</td>
+	<td>{{time}}</td>
+	<td><a href="/tasks/{{taskId}}"><span class="glyphicon glyphicon-pencil"></span> {{taskName}}</a></td>
+	<td><a href="/users/{{userId}}"><span class="glyphicon glyphicon-user"></span> {{username}}</a></td>
+	<td><a href="#" data-scheduleid="{{_id}}" data-taskid="{{taskId}}" data-userid="{{userId}}" class="deleteSchedule">x</a></td>
+</tr>
+</template>

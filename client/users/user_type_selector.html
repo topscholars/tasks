@@ -1,0 +1,7 @@
+<template name="userTypeSelector">
+    {{#if selectedType this }}
+    	<option selected="selected" value="{{this}}">{{this}}</option>
+    {{else}}
+    	<option value="{{this}}">{{this}}</option>
+    {{/if}}
+</template>

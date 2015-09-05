@@ -1,0 +1,25 @@
+<template name="userNewBulk">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'usersList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Users List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+
+  <form class="main">
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Save All" class="btn btn-primary"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <div id="handsOnTable"></div>
+        </div>
+    </div>
+
+  </form>
+</template>

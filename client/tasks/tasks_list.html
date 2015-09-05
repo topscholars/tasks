@@ -1,0 +1,46 @@
+<template name="tasksList">
+	{{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-list-alt"></span><b> Tasks List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSchedule'}}"><span class="glyphicon glyphicon-send"></span><b> Outbound</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'tasksList'}}/report.csv" target="_blank" class="discuss btn"><span class="glyphicon glyphicon-download-alt"></span> Report</a></li>
+    </ul>
+    {{/if}}
+	<div class="panel panel-default">
+  	<!-- Default panel contents -->
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="taskName">Task <span class="glyphicon glyphicon-{{sortTasksStatus 'taskName'}}"></span></a></th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="taskType">Type <span class="glyphicon glyphicon-{{sortTasksStatus 'type'}}"></span></a></th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="endTime">End/Due <span class="glyphicon glyphicon-{{sortTasksStatus 'endTime'}}"></span></a></th>
+	          {{#if showTaskStatus}}
+	          <th>Status</th>
+	          {{/if}}
+	          {{#if staffView}}
+	          <th></th>
+	          {{else}}
+	          <th title='Schedule follow-up meetings below'><span class="glyphicon glyphicon-calendar"></span></th>
+	          {{/if}}
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#each tasks}}
+	        	{{> taskTitle}}
+			{{/each}}
+
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more tasks" href="#">Load More</a>
+{{/if}}
+</template>
+

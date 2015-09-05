@@ -1,0 +1,85 @@
+<template name="groupDisplay">
+{{#with group}}
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">
+		<h2><span class="glyphicon glyphicon-th-large"></span> {{groupName}}
+			<a href="{{pathFor 'groupDisplay'}}/report.csv" target="_blank" class="discuss btn"><span class="glyphicon glyphicon-download-alt"></span> Report</a>
+			<a href="{{pathFor 'groupEdit'}}" class="discuss btn"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+		</h2>
+	  </div>	 	
+	  {{#if description}}
+	  <div class="panel-body">
+	 	<p><b>Description:</b> {{description}}</p>	
+	  </div>
+	  {{/if}}
+	  <!-- Table -->
+	  <div class="table-responsive">
+
+		<ul class="nav nav-tabs">
+		  {{#if viewUsers}}
+		  	<li role="presentation" class="active viewUsers"><a href="#"><span id="usersFolder" class="glyphicon glyphicon-folder-open"></span> Users</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewUsers"><a href="#"><span id="usersFolder" class="glyphicon glyphicon-folder-close"></span> Users</a></li>
+		  {{/if}}
+
+		  {{#if viewTasks}}
+		  	<li role="presentation" class="active viewTasks"><a href="#"><span id="tasksFolder" class="glyphicon glyphicon-folder-open"></span> Tasks</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewTasks"><a href="#"><span id="tasksFolder" class="glyphicon glyphicon-folder-close"></span> Tasks</a></li>
+		  {{/if}}	
+
+		  {{#if viewGroups}}
+		  	<li role="presentation" class="active viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-open"></span> Subgroups</a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive viewGroups"><a href="#"><span id="groupsFolder" class="glyphicon glyphicon-folder-close"></span> Subgroups</a></li>
+		  {{/if}}
+<!-- 
+		  {{#if addUser}}
+		  	<li role="presentation" class="active addUser"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addUser"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+		  {{/if}}	
+		   -->
+		  {{#if addTask}}
+		  	<li role="presentation" class="active addTask"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addTask"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+		  {{/if}}
+
+<!-- 		  {{#if addGroup}}
+		  	<li role="presentation" class="active addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{else}}
+		  	<li role="presentation" class="inactive addGroup"><a href="#"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+		  {{/if}} 
+-->
+
+		</ul>
+
+
+	    {{#if addUser}}
+	    	{{> userNew}}
+	    {{/if}}
+	    {{#if addGroup}}
+	    	{{> groupNew}}
+	    {{/if}}
+	    {{#if addTask}}
+	    	{{> taskNew}}
+	    {{/if}}
+
+		{{#with viewGroups}}
+	    	{{> groupsList filter="groups" groups=../subgroups}}
+		{{/with}}
+
+		{{#with viewUsers}}
+	    	{{> usersList filter="groups" users=../users}}
+	    {{/with}}
+
+	    {{#with viewTasks}}
+	    	{{> tasksList filter="groups" tasks=../tasks}}
+	    {{/with}}
+
+	  </div>
+	</div>	
+{{/with}}
+</template>

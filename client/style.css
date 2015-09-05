@@ -1,0 +1,124 @@
+/*need to bring div to the front of other divs so that tt dropdown is visible*/
+.tt-organizer {
+  z-index: 105; position:relative; 
+ }
+.tt-host {
+  z-index: 104; position:relative; 
+ }
+.tt-resource {
+  z-index: 103; position:relative; 
+ }
+.tt-master {
+  z-index: 102; position:relative; 
+ }
+.tt-group {
+  z-index: 101; position:relative; 
+ }
+.tt-user {
+  z-index: 100; position:relative; 
+ }
+.tt-task {
+  z-index: 99; position:relative; 
+ }
+.tt-rsvp {
+  z-index: 98; position:relative; 
+ }
+
+.dropdown-menu {
+  min-width: 0px;
+}
+ 
+.loading-image {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(spinner.gif) center no-repeat #fff;
+}
+
+.loading-spinner {
+  position: fixed;
+  display: none;
+  opacity: 0.5;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(spinner.gif) center no-repeat #fff;
+}
+
+body { padding-top: 30px; }
+
+.post {
+  /* For modern browsers */
+  /* For IE 6/7 (trigger hasLayout) */
+  *zoom: 1;
+  position: relative;
+  opacity: 1; }
+  .post:before, .post:after {
+    content: "";
+    display: table; }
+  .post:after {
+    clear: both; }
+  .post.invisible {
+    opacity: 0; }
+  .post.instant {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none; }
+  .post.animate{
+    -webkit-transition: all 300ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: all 300ms 0ms ease-in;
+    -o-transition: all 300ms 0ms ease-in;
+    transition: all 300ms 0ms ease-in; }
+  .post .upvote {
+    z-index: 100; position:relative; /*need to bring button in front of div to be clickable*/
+    display: block;
+    margin: 7px 12px 0 0;
+    float: left; }
+  .post .post-content {
+    float: left; }
+    .post .post-content h3 {
+      margin: 0;
+      line-height: 1.4;
+      font-size: 18px; }
+      .post .post-content h3 a {
+        display: inline-block;
+        margin-right: 5px; }
+      .post .post-content h3 span {
+        font-weight: normal;
+        font-size: 14px;
+        display: inline-block;
+        color: #aaaaaa; }
+    .post .post-content p {
+      margin: 0; }
+  .post .discuss {
+    display: block;
+    float: right;
+    margin-top: 7px; }
+
+.load-more {
+  display: block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 10px; }
+  .load-more:hover {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1); }
+
+.posts .spinner-container{
+  position: relative;
+  height: 100px;
+}

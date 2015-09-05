@@ -1,0 +1,117 @@
+<template name="userNew">
+
+  {{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'usersList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Users List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+  {{/if}}
+  <form class="main form">    
+    <div class="input-group">
+        <span class="input-group-addon" for="firstName">First Name</span>
+        <input name="firstName" class="form-control" type="text" value="{{firstName}}" placeholder="Enter first name"/>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" for="lastName">Last Name</span>
+        <input name="lastName" class="form-control" type="text" value="{{lastName}}" placeholder="Enter last name"/>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" for="nickName">Nickname</span>
+        <input name="nickName" class="form-control" type="text" value="{{nickName}}" placeholder="Enter nickname"/>
+    </div>
+    
+    <div class="input-group">
+        <span class="input-group-addon" for="type">Type</span>
+        <select name="type" class="form-control" >
+            {{#each userTypesList}}
+                {{> userTypeSelector}}
+            {{/each}}
+        </select> 
+    </div> 
+
+    <div class="input-group tt-master">
+        <span class="input-group-addon" for="users"><span class="glyphicon glyphicon-user"></span> Users</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-users" name="users" value="" placeholder="Enter user names here"/>
+    </div> 
+
+    <div class="input-group tt-group">
+        <span class="input-group-addon" for="groups"><span class="glyphicon glyphicon-th-large"></span> Groups</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-groups" name="groups" value="" placeholder="Enter group names here"/>
+    </div> 
+
+    <div class="input-group tt-task">
+        <span class="input-group-addon" for="tasks"><span class="glyphicon glyphicon-pencil"></span> Tasks</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-tasks" name="tasks" value="" placeholder="Enter task names here"/>
+    </div> 
+
+    <div class="input-group">
+        <span class="input-group-addon" for="email"><span class="glyphicon glyphicon-envelope"></span> Email</span>
+        <input name="email" class="form-control" type="text" value="" placeholder="example@email.com"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="email2"><span class="glyphicon glyphicon-envelope"></span> Email 2</span>
+        <input name="email2" class="form-control" type="text" value="" placeholder="example@email.com"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="phone"><span class="glyphicon glyphicon-phone"></span> Phone</span>
+        <input name="phone" class="form-control" type="text" value="" placeholder="Ex. +66891234567"/>
+    </div>
+    
+    <div class='input-group date' id='datetimepickerBirth'>
+      <span class="input-group-addon" for="birthdate">Birthdate</span>
+      <input name="birthdate" type='text' class="form-control" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD" value=""/>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="address1"><span class="glyphicon glyphicon-home"></span> Street Address 1</span>
+        <input name="address1" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="address2"><span class="glyphicon glyphicon-home"></span> Street Address 2</span>
+        <input name="address2" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="city"><span class="glyphicon glyphicon-map-marker"></span> City</span>
+        <input name="city" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="state"><span class="glyphicon glyphicon-map-marker"></span> State</span>
+        <input name="state" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="postalCode"><span class="glyphicon glyphicon-barcode"></span> Postal Code</span>
+        <input name="postalCode" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="country"><span class="glyphicon glyphicon-globe"></span> Country</span>
+        <input name="country" class="form-control" type="text" value="" placeholder=""/>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon" for="status">Status</span>
+      <select name="status" class="form-control">
+          {{#each userStatusesList}}
+              {{> userStatusSelector}}
+          {{/each}}
+      </select> 
+    </div> 
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+        </div>
+    </div>
+
+  </form>
+</template>

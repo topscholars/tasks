@@ -1,0 +1,49 @@
+<template name="noteSearch">
+	<ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'notesList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Notes List</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'noteNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-list-alt"></span></a></li>
+    </ul>
+
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+  	  <div class="panel-heading"><h4>Search notes by username, author name and note text</h4></div>
+	  <div class="panel-body">
+		{{> esInput index="notes" placeholder="Enter search terms here" }} 
+	    {{#ifEsIsSearching index="notes"}}
+	        <div>Searching...</div>
+	    {{/ifEsIsSearching}}
+	  </div>
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>
+	          	Date
+	          </th>	          
+	          <th>
+	          	Author
+	          </th>
+	          <th>
+	          	User
+	          </th>
+	          <th>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#esEach index="notes"}}
+	        	{{> noteTitle}}
+			{{/esEach}}
+	        {{#ifEsHasNoResults index="notes"}}
+	            <div class="no-results">No results found</div>
+	        {{else}}
+	            {{> esLoadMoreButton index="notes"}}
+	        {{/ifEsHasNoResults}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+</template>

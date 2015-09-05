@@ -1,0 +1,41 @@
+<template name="taskSchedule">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'tasksList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Tasks List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-send"></span><b> Outbound</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading"><b>Note:</b> Deleting an item below removes both the email and the SMS for the user of the task. <br/>If the task is edited and saved, the email/SMS will be rescheduled here.</div>
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>Type</th>
+	          <th>Time</th>
+	          <th>Task</th>
+	          <th>Recipient</th>
+	          <th></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#if Template.subscriptionsReady}}
+	      	{{#each taskSchedules}}
+	        	{{> scheduleTitle}}			
+			{{/each}}
+			{{else}}
+			  Loading...
+			{{/if}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more schedules" href="#">Load More</a>
+{{/if}}
+</template>

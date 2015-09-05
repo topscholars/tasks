@@ -1,0 +1,49 @@
+<template name="usersList">
+	{{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-list-alt"></span><b> Users List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'userNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+       <li role="presentation" class="inactive"><a href="{{pathFor 'usersList'}}/report.csv" target="_blank" class="discuss btn"><span class="glyphicon glyphicon-download-alt"></span> Report</a></li>
+    </ul>
+    {{/if}}
+
+	<div class="panel panel-default">
+
+  	<!-- Default panel contents -->
+
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>
+	          	<a role="menuitem" tabindex="-1" href="#" id="firstName">First Name <span class="glyphicon glyphicon-{{sortUsersStatus 'firstName'}}"></span></a> - 
+	          	<a role="menuitem" tabindex="-1" href="#" id="nickName">Nickname <span class="glyphicon glyphicon-{{sortUsersStatus 'nickName'}}"></span></a> -
+	          	<a role="menuitem" tabindex="-1" href="#" id="lastName">Last Name <span class="glyphicon glyphicon-{{sortUsersStatus 'lastName'}}"></span></a>
+	          </th>
+	          <th><a role="menuitem" tabindex="-1" href="#" id="userType">Type <span class="glyphicon glyphicon-{{sortUsersStatus 'type'}}"></span></a></th>
+	          {{#if showTaskStatus}}
+	          <th>Status</th>
+	          {{else}}
+	          <th>+Note</th>
+	          {{/if}}
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#each users}}
+	        	{{> userTitle}}
+			{{/each}}
+
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+
+{{#if showLoadMore}}
+  <a class="load-more users" href="#">Load More</a>
+{{/if}}
+
+</template>
+

@@ -1,0 +1,141 @@
+<template name="taskNew">
+  {{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'tasksList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Tasks List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskSchedule'}}"><span class="glyphicon glyphicon-send"></span><b> Outbound</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-pencil"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'taskNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+  {{/if}}
+  <form class="main form">
+    <a href="#" id="saveTask" class="discuss btn" title='Save'><span class="glyphicon glyphicon-floppy-save"></span></a>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="taskName">Name</span>
+        <input name="taskName" class="form-control" type="text" value="" placeholder="Enter name"/>
+    </div>
+    
+    <div class="input-group tt-master">
+        <span class="input-group-addon" for="taskMaster"><span class="glyphicon glyphicon-user"></span> Task Master</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-taskMaster" name="taskMaster" value="" placeholder="Enter a user name here"/>
+    </div> 
+
+    <div class="input-group tt-task">
+        <span class="input-group-addon" for="tasks"><span class="glyphicon glyphicon-pencil"></span> Prereq. Tasks</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-tasks" name="tasks" value="" placeholder="Enter task names here"/>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="type">Type</span>
+        <select name="type" class="form-control" >
+            {{#each taskTypesList}}
+                {{> taskTypeSelector}}
+            {{/each}}
+        </select> 
+    </div> 
+    
+    <div class='input-group date' id='datetimepickerStart'>
+      <span class="input-group-addon" for="startTime">Start</span>
+      <input name="startTime" type='text' class="form-control" placeholder="YYYY-MM-DD HH:mm" value=""/>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+
+    <div class='input-group date' id='datetimepickerEnd'>
+      <span class="input-group-addon" for="endTime">End</span>
+      <input name="endTime" type='text' class="form-control" placeholder="YYYY-MM-DD HH:mm" value=""/>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon" for="status">Follow-up Meeting</span>
+      <input name="followUpName" class="form-control" type="text" value="" placeholder="Enter follow-up name"/>
+      <select name="dueDuration" class="form-control">
+        {{#each dueDurations}}
+          {{> dueDurationSelector}}
+        {{/each}}
+      </select>
+      <select name="slotDuration" class="form-control">
+        {{#each slotDurations}}
+          {{> slotDurationSelector}}
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon" for="location"><span class="glyphicon glyphicon-map-marker"></span> Location</span>
+        <input name="location" class="form-control" type="text" value="" placeholder="Ex. Top Scholars"/>
+    </div>
+
+    <div class="input-group tt-group">
+        <span class="input-group-addon" for="groups"><span class="glyphicon glyphicon-th-large"></span> Groups</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-groups" name="groups" value="" placeholder="Enter group names here"/>
+    </div> 
+
+    <div class="input-group tt-user">
+        <span class="input-group-addon" for="users"><span class="glyphicon glyphicon-user"></span> Users</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-users" name="users" value="" placeholder="Enter user names here"/>
+    </div> 
+
+    <div class="input-group">
+      <span class="input-group-addon" for="description"><span class="glyphicon glyphicon-list-alt"></span> Description</span>
+      <textarea name="description" class="form-control" rows="5" type="text"></textarea>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon" for="emailBody"><span class="glyphicon glyphicon-envelope"></span> Email</span>
+      <textarea name="emailBody" class="form-control" rows="5" type="text"></textarea>
+      <span class="input-group-btn">
+        <button class="btn btn-success autoEmail" type="button">Auto</button>
+      </span>
+    </div>
+
+    <div class='input-group date' id='datetimepickerEmail'>
+      <span class="input-group-addon" for="emailTime">Email Time</span>
+      <input name="emailTime" type='text' class="form-control" placeholder="YYYY-MM-DD HH:mm" value=""/>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-rsvp"></span></span>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon" for="sms"><span class="glyphicon glyphicon-phone"></span> SMS</span>
+      <textarea name="sms" class="form-control" rows="5" type="text" maxlength="160"></textarea>
+      <span class="input-group-btn">
+        <button class="btn btn-success autoSMS" type="button">Auto</button>
+      </span>
+    </div>
+    <div class='input-group date' id='datetimepickerSMS'>
+      <span class="input-group-addon" for="smsTime">SMS time</span>
+      <input name="smsTime" type='text' class="form-control" placeholder="YYYY-MM-DD HH:mm" value=""/>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-rsvp"></span>
+      </span>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon" for="status">Status</span>
+      <select name="status" class="form-control">
+        {{#each taskStatusesList}}
+          {{> taskStatusSelector}}
+        {{/each}}
+      </select> 
+    </div> 
+
+    <div class="checkbox">
+      <label><input id="makeVisible" type="checkbox" value="">Visible in TS to non-staff</label>
+    </div>
+    <div class="checkbox">
+      <label><input id="makeEmailSMS" type="checkbox" value="">Emails and SMS to non-staff</label>
+    </div>
+    <div class="checkbox">
+      <label><input id="makeGoogleCalendar" type="checkbox" value="">Google Calendar Event</label>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" value="Save" class="btn btn-primary"/>
+      </div>
+    </div>
+
+  </form>
+</template>

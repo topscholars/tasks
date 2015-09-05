@@ -1,0 +1,43 @@
+<template name="groupNew">
+  {{#if showHeaders}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupsList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Groups List</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupSearch'}}"><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="active"><a><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+  {{/if}}
+  <form class="main form">
+    <div class="input-group">
+        <span class="input-group-addon" for="groupName">Name</span>
+        <input name="groupName" class="form-control" type="text" value="" placeholder="Enter name"/>
+    </div>
+
+    <div class="input-group tt-group">
+        <span class="input-group-addon" for="subgroups"><span class="glyphicon glyphicon-th-large"></span> Subgroups</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-subgroups" name="subgroups" value="" placeholder="Enter group names here"/>
+    </div> 
+
+    <div class="input-group tt-user">
+        <span class="input-group-addon" for="users"><span class="glyphicon glyphicon-user"></span> Users</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-users" name="users" value="" placeholder="Enter user names here"/>
+    </div> 
+
+    <div class="input-group tt-task">
+        <span class="input-group-addon" for="tasks"><span class="glyphicon glyphicon-pencil"></span> Tasks</span>
+        <input type="text" class="form-control" id="tokenfield-typeahead-tasks" name="tasks" value="" placeholder="Enter task names here"/>
+    </div> 
+
+    <div class="input-group">
+      <span class="input-group-addon" for="description"><span class="glyphicon glyphicon-list-alt"></span> Description</span>
+      <textarea name="description" class="form-control" type="text">{{description}}</textarea>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+        </div>
+    </div>
+
+  </form>
+</template>

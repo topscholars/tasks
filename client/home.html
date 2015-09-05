@@ -1,0 +1,38 @@
+
+<template name="home">
+
+<div class="jumbotron">
+  <h1 align=
+  "center">Welcome to TS alpha</h1>
+
+  <p align="center"><img src="/TS_VennDiagram.png" width="232" height="222"></p>
+
+  <h3><span class="glyphicon glyphicon-pencil"></span> Tasks</h3>
+  <p>
+    This system was designed to organize Tasks. Tasks are essentially calendar events that can be assigned to multiple Users and multiple Groups. Email and SMS notifications can be scheduled for each Task. One Task Master can be assigned to each Task. The "from" email address will be the Task Master's. When a Task is created, a Google Calendar event with the Users as attendees is also inserted into the Task Master's account. 
+  </p>
+
+  <h3><span class="glyphicon glyphicon-calendar"></span> RSVPs</h3>
+  <p>
+    Organizers can create RSVP forms by designating a Host, selecting invitees, specifying the Resource, and entering the time slots for individual RSVPs. When an invitee reserves a time slot, a Task is created with the Host as Task Master. Each User is allowed to book one time slot for a given RSVP.
+  </p>
+
+  <h3><span class="glyphicon glyphicon-user"></span> Users</h3>
+  <p>
+    Users can register by email or by Google Login. @topscholars.org accounts are automatically assigned staff access privileges. Users added by staff are not asked to verify their email but must do so at some point before logging in to the system.
+  </p>
+
+  <h3><span class="glyphicon glyphicon-th-large"></span> Groups</h3>
+  <p>
+    Groups are used to organize Tasks and Users. When a User is added to a Group, the User automatically inherits the Tasks of the Group. Likewise, when a Task is assigned to a Group the Group's Users automatically inherit the Task. Groups can also have subgroups, which inherits Tasks from the master Group. Note that the converse is not true -- the master Group does not inherit Tasks from subgroups. When a User is added to a sub-Group, the User inherits all the super-Groups' (but not sub-Groups') Tasks and master Groups. When a master Group is deleted all of its Tasks and Users are removed from the sub-Groups.
+  </p>
+
+  <h3><span class="glyphicon glyphicon-book"></span> Resources</h3>
+  <p>
+    A Resource can be a room, a book, a piece of equipment, etc. Resources are booked through the RSVP system.
+  </p>
+
+  <h3>Ready to get started? Go to your Dashboard: <a class="btn btn-primary btn-lg" href="{{pathFor 'dashboard'}}" role="button"><span class="glyphicon glyphicon-dashboard"></span></a></h3>
+</div>
+
+</template>

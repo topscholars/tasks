@@ -1,0 +1,38 @@
+<template name="groupSearch">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupsList'}}"><span class="glyphicon glyphicon-list-alt"></span><b> Groups List</b></a></li>
+	  <li role="presentation" class="active"><a><span class="glyphicon glyphicon-search"></span><b> Search</b></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupNew'}}"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-th-large"></span></a></li>
+      <li role="presentation" class="inactive"><a href="{{pathFor 'groupNewBulk'}}"><span class="glyphicon glyphicon-th-list"></span><b> Bulk Add</b></a></li>
+    </ul>
+	<div class="panel panel-default">
+  	  <div class="panel-heading"><h4>Search by name and description</h4></div>
+	  <div class="panel-body">
+		{{> esInput index="groups" placeholder="Enter search terms here" }} 
+	    {{#ifEsIsSearching index="groups"}}
+	        <div>Searching...</div>
+	    {{/ifEsIsSearching}}
+	  </div>
+	  <!-- Table -->
+	  <div class="table-responsive">
+	    <table class="table table-condensed table-hover">
+	      <thead>
+	        <tr>
+	          <th>Group</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	      	{{#esEach index="groups"}}
+	        	{{> groupTitle}}
+			{{/esEach}}
+	        {{#ifEsHasNoResults index="groups"}}
+	            <div class="no-results">No results found</div>
+	        {{else}}
+	            {{> esLoadMoreButton index="groups"}}
+	        {{/ifEsHasNoResults}}
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+</template>
+
